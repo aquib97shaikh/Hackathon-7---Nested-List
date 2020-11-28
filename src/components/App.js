@@ -155,7 +155,27 @@ const states = [
 ];
 
 function App() {
-  return <div id="main"></div>;
+  const [city, setCity] = useState(0);
+  const [state, setState] = useState(0);
+  const town =states[state].cities[city].towns.map((town,tid)=>(
+    <div id={"town"+(tid+1)} key={town.name+tid}>{town}</div>
+  ));
+  console.log(town);
+  return (
+    <div id="main">
+      {states.map((st, id) => (
+        <div class="state" id={"state" + (id + 1)} key={st.name+id} onClick={() => setState(id)}>
+          {st.name}
+        </div>
+      ))}
+      {states[state].cities.map((ci, cityId) => (
+        <div class="city" id={"city" + (cityId + 1)} key={ci.name+cityId} onClick={() => setCity(cityId)}>{ci.name}</div>
+      ))}
+      {states[state].cities[city].towns.map((town,tid)=>(
+        <div class="town" id={"town"+tid} key={town.name}> {town.name}</div>
+      ))}
+    </div>
+  );
 }
 
 export default App;

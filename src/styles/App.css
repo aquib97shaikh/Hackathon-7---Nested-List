@@ -14,3 +14,12 @@ button{
 .bg-pink{
 	background-color:pink;
 }
+.town {
+    background: rgb(34, 193, 195);
+}
+.city {
+    background: rgb(221, 112, 18);
+}
+.state {
+    background: rgb(44, 209, 88);
+}
