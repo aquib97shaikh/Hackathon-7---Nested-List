@@ -163,17 +163,43 @@ function App() {
   console.log(town);
   return (
     <div id="main">
-      {states.map((st, id) => (
-        <div class="state" id={"state" + (id + 1)} key={st.name+id} onClick={() => setState(id)}>
-          {st.name}
-        </div>
-      ))}
-      {states[state].cities.map((ci, cityId) => (
-        <div class="city" id={"city" + (cityId + 1)} key={ci.name+cityId} onClick={() => setCity(cityId)}>{ci.name}</div>
-      ))}
-      {states[state].cities[city].towns.map((town,tid)=>(
-        <div class="town" id={"town"+tid} key={town.name}> {town.name}</div>
-      ))}
+      <ul>
+        {states.map((st, id) => (
+          <div
+            className="state"
+            id={"state" + (id + 1)}
+            key={st.name + id}
+            onClick={() => setState(id)}
+          >
+            <h1>{st.name}</h1>
+            { id==state?
+              <ul>
+                {states[state].cities.map((ci, cityId) => (
+                  <div
+                    className="city"
+                    id={"city" + (cityId + 1)}
+                    key={ci.name + cityId}
+                    onClick={() => setCity(cityId)}
+                  >
+                    {ci.name}
+                    {
+                      city==cityId ?
+                      states[state].cities[city].towns.map((town, tid) => (
+                        <div className="town" id={"town" + tid} key={town.name}>
+                          {town.name}
+                        </div>
+                      ))
+                      :null
+                    }
+                  </div>
+                ))}
+              </ul>:null
+            }
+          </div>
+        ))}
+
+      
+      </ul>
     </div>
   );
 }
