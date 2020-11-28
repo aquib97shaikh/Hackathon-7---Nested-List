@@ -157,49 +157,47 @@ const states = [
 function App() {
   const [city, setCity] = useState(0);
   const [state, setState] = useState(0);
-  const town =states[state].cities[city].towns.map((town,tid)=>(
-    <div id={"town"+(tid+1)} key={town.name+tid}>{town}</div>
+  const town = states[state].cities[city].towns.map((town, tid) => (
+    <div id={"town" + (tid + 1)} key={town.name + tid}>
+      {town}
+    </div>
   ));
   console.log(town);
   return (
     <div id="main">
-      
-        {states.map((st, id) => (
-          <div
-            className="state"
-            id={"state" + (id + 1)}
-            key={st.name + id}
-            onClick={() => setState(id)}
-          >
-            <h1>{st.name}</h1>
-            { id==state?
-          
-                states[state].cities.map((ci, cityId) => (
-                  <div
-                    className="city"
-                    id={"city" + (cityId + 1)}
-                    key={ci.name + cityId}
-                    onClick={() => setCity(cityId)}
-                  >
-                    {ci.name}
-                    {
-                      city==cityId ?
-                      states[state].cities[city].towns.map((town, tid) => (
-                        <div className="town" id={"town" + (tid+1)} key={town.name}>
+      {states.map((st, id) => (
+        <div
+          className="state"
+          id={"state" + (id + 1)}
+          key={st.name + id}
+          onClick={() => (state === id ? setState(-1) : setState(id))}
+        >
+          <h1>{st.name}</h1>
+          {id === state
+            ? states[state].cities.map((ci, cityId) => (
+                <div
+                  className="city"
+                  id={"city" + (cityId + 1)}
+                  key={ci.name + cityId}
+                  onClick={() => (city === id ? setCity(-1) : setCity(cityId))}
+                >
+                  {ci.name}
+                  {city === cityId
+                    ? states[state].cities[city].towns.map((town, tid) => (
+                        <div
+                          className="town"
+                          id={"town" + (tid + 1)}
+                          key={town.name}
+                        >
                           {town.name}
                         </div>
                       ))
-                      :null
-                    }
-                  </div>
-                ))
-              :null
-            }
-          </div>
-        ))}
-
-      
-
+                    : null}
+                </div>
+              ))
+            : null}
+        </div>
+      ))}
     </div>
   );
 }
