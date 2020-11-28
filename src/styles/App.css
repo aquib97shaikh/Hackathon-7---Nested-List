@@ -23,3 +23,6 @@ button{
 .state {
     background: rgb(44, 209, 88);
 }
+.city, .state {
+    cursor: pointer;
+}

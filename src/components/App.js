@@ -163,7 +163,7 @@ function App() {
   console.log(town);
   return (
     <div id="main">
-      <ul>
+      
         {states.map((st, id) => (
           <div
             className="state"
@@ -173,8 +173,8 @@ function App() {
           >
             <h1>{st.name}</h1>
             { id==state?
-              <ul>
-                {states[state].cities.map((ci, cityId) => (
+          
+                states[state].cities.map((ci, cityId) => (
                   <div
                     className="city"
                     id={"city" + (cityId + 1)}
@@ -185,21 +185,21 @@ function App() {
                     {
                       city==cityId ?
                       states[state].cities[city].towns.map((town, tid) => (
-                        <div className="town" id={"town" + tid} key={town.name}>
+                        <div className="town" id={"town" + (tid+1)} key={town.name}>
                           {town.name}
                         </div>
                       ))
                       :null
                     }
                   </div>
-                ))}
-              </ul>:null
+                ))
+              :null
             }
           </div>
         ))}
 
       
-      </ul>
+
     </div>
   );
 }
