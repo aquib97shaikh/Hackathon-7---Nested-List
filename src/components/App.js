@@ -197,7 +197,7 @@ function App() {
     do {
       Object.getOwnPropertyNames(currentObj).map(item => properties.add(item))
     } while ((currentObj = Object.getPrototypeOf(currentObj)))
-    return [...properties.keys()].filter(item => typeof obj[item] === 'function')
+    return [...properties.keys()]
   }
   return (
     <div id="main">
@@ -206,12 +206,14 @@ function App() {
           className="state"
           id={"state" + (id + 1)}
           key={st.name + id}
-          onClick={(event) => {if(event.target.tagName=="H1"){
+          onClick={(event) => {
+            if(event.target.matches(".state")){
             id===state ?setState(-1) :setState(id);
             setCity(-1);
-          } }}
+          } }
+        }
         >
-          <h1>{st.name}</h1>
+        {st.name}
           {/* {getCities(id)} */}
           { state >= 0 && id==state ?
           
